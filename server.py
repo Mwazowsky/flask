@@ -17,9 +17,7 @@ from json import *
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-CORS(app)
-
-app.config['CORS_HEADERS'] = 'Content-Type'
+CORS(app, supports_credentials=True)
 
 crop_recommendation_model_path = './XGBoost.pkl'
 crop_recommendation_model = pickle.load(
