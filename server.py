@@ -105,8 +105,9 @@ def members1():
     # data = np.array([[83, 45, 60, 28, 70.3, 7.0, 150.9]])
     my_prediction = crop_recommendation_model.predict(data)
     final_prediction = my_prediction[0]
-
-    return jsonify({"crop": final_prediction, "data": y.json()['main'], 'l':l})
+    response = jsonify({"crop": final_prediction, "data": y.json()['main'], 'l':l})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 
