@@ -17,7 +17,7 @@ from json import *
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-CORS(app, supports_credentials=True)
+CORS(app,  resources={r"/crop": {"origins": "http://localhost:port"}}, supports_credentials=True)
 
 crop_recommendation_model_path = './XGBoost.pkl'
 crop_recommendation_model = pickle.load(
@@ -28,6 +28,7 @@ fertilizer_recommendation_model = pickle.load(
     open(fertilizer_recommendation_model_path, 'rb'))
 
 @app.route("/crop", methods=['POST'])
+@cross_origin(origin='localhost',headers=['Content-Type','Authorization'])
 def members1():
 
     try:
